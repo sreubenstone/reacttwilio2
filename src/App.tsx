@@ -1,22 +1,23 @@
-import * as React from 'react';
-import './App.css';
+import * as React from "react";
+import List from "./components/list";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
 
-import logo from './logo.svg';
+// apollo client setup
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql"
+});
 
 class App extends React.Component {
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
+      <ApolloProvider client={client}>
+        <div id="main">
+          <h1>Pick Up Lines</h1>
+          <List />
+        </div>
+      </ApolloProvider>
     );
   }
 }
-
 export default App;
